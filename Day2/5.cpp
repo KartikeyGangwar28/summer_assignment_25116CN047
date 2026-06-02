@@ -15,5 +15,6 @@ int main(){
     long long int n;
      cout<<"ENTER THE NUMBER: ";
      cin>>n;
-     cout<<"SUM OF DIGITS OF GIVEN INTEGER IS: "<<findSum(n);
+     int sum = findSum(n);
+     cout<<"SUM OF DIGITS OF GIVEN INTEGER IS: "<<sum;
 }

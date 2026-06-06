@@ -9,7 +9,7 @@ deque<int> convertDecimalIntoBinary(int n){
     }
   int rem=0;
  // int store=0;
-  while(n!=0||n==1){
+  while(n!=1){
     rem = n%2;
     d.push_front(rem);
     n=n/2;

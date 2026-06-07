@@ -29,9 +29,6 @@ int main() {
     cin>>n;
     cout<<"Fibonacci Series: ";
     for (int i=0;i<n;i++) {
-        cout<<recursiveFibonacci(i) << " ";
+        cout<<recursiveFibonacci(i)<<" ";
     }
-    cout << endl;
-
-    return 0;
 }

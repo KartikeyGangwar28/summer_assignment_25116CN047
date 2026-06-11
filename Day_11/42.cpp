@@ -1,7 +1,7 @@
 #include <iostream>
 int findMax(int a,int b,int c){
         
-          int max= (a>b)?a:(b>c)?b:c;
+          int max= (a>b)?((a>c)?a:c):(b>c)?b:c;
           return max;
 }
  int main(){

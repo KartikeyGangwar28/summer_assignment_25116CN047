@@ -1,6 +1,6 @@
 #include <iostream>
-int findFactorial(int n){
-  int factorial=1;
+long long int findFactorial(int n){
+  long long int factorial=1;
   if(n==0||n==1){
     return 1;
   }
@@ -17,6 +17,6 @@ int main(){
     if(n<0){
         std::cout<<"FACTORIAL OF NEGATIVE NUMBERS IS MATHEMATICALLY UNDEFINED";
     }
-    int factorial=findFactorial(n);
+    long long int factorial=findFactorial(n);
     std::cout<<"FACTORIAL OF "<<n<<" is: "<<factorial;
 }

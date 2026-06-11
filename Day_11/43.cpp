@@ -11,6 +11,10 @@ int main(){
 int n;
 std::cout<<"ENTER THE NUMBER: ";
 std::cin>>n;
+if(n<0){
+    std::cout<<"negative numbers can't be prime as per mathematical standards";
+    return 0;
+}
 if(n==0||n==1){
     std::cout<<n<<" is neither prime nor composite";
     return 0;

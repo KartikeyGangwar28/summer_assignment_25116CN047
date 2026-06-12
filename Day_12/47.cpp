@@ -1,5 +1,6 @@
 #include <iostream>
-void printFibonacci(int n){ //here n is the number of terms upto which i want to print the series
+void printFibonacci(int n){ 
+   //i am taking n as the number of terms upto which the series has to be printed;
 int a=0;
 int b=1;
 int temp=0;

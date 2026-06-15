@@ -21,6 +21,7 @@ int main(){
             arr[j+1]=temp;
         }
      }
+     std::cout<<"ARRAY AFTER ROTATION: ";
           for(int i=0;i<n;i++)
     { std::cout<<arr[i]<<" ";}
         

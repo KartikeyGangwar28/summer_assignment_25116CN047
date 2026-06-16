@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+//element with max frequency in array;
 int findMaxFrequency(int arr[],int n){
 int frequency=0;
     int occurence=0;

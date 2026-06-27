@@ -1,205 +1,142 @@
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<string>
 #include <vector>
+#include <algorithm>
 using namespace std;
-class Account{
+
+class Employee
+{
 private:
-    long long accountNo;
+    int empID;
     string name;
-    int age;
-    string phone;
-    string accountType;
-    double balance;
+    float basicSalary,hra,da,bonus,deduction;
+    float grossSalary,netSalary;
+
 public:
-    void createAccount(){
-        cout<<"ENTER ACCOUNT NUMBER: ";
-        cin>>accountNo;
-        cout<<"ENTER CUSTOMER NAME: ";
+    void input()
+    {
+        cout<<"Enter Employee ID: ";
+        cin>>empID;
+        cout<<"Enter Employee Name: ";
         getline(cin>>ws,name);
-        cout<<"ENTER AGE: ";
-        cin>>age;
-        cout<<"ENTER PHONE NUMBER: ";
-        cin>>phone;
-        cout<<"ENTER ACCOUNT TYPE: ";
-        getline(cin>>ws,accountType);
-        cout<<"ENTER INITIAL BALANCE: ";
-        cin>>balance;
+        cout<<"Enter Basic Salary: ";
+        cin>>basicSalary;
+        cout<<"Enter HRA: ";
+        cin>>hra;
+        cout<<"Enter DA: ";
+        cin>>da;
+        cout<<"Enter Bonus: ";
+        cin>>bonus;
+        cout<<"Enter Deduction: ";
+        cin>>deduction;
     }
-long long getAccountNo(){
-        return accountNo;
+    int getId(){
+        return empID;
     }
-string getName(){
-        return name;
+    int calculateGrossSalary()
+    {
+        grossSalary=basicSalary+hra+da+bonus;
+        
+        return grossSalary;
     }
-void displayAccount(){
-        cout<<"\n******** ACCOUNT DETAILS ********\n";
-        cout<<"ACCOUNT NUMBER: "<<accountNo<<endl;
-        cout<<"NAME:           "<<name<<endl;
-        cout<<"AGE:            "<<age<<endl;
-        cout<<"PHONE:          "<<phone<<endl;
-        cout<<"ACCOUNT TYPE:   "<<accountType<<endl;
-        cout<<"BALANCE:        "<<balance<<endl;
-        cout<<"\n******** ACCOUNT DETAILS ********\n";
+    int calculateNetSalary(){
+    netSalary=grossSalary-deduction;
+    return netSalary;
     }
-
- void deposit(){
-        double amount;
-        cout<<"ENTER AMOUNT U WANT TO DEPOSIT: ";
-        cin>>amount;
-        balance += amount;
-        cout<<"MONEY DEPOSITED SUCCESSFULLY\n";
-        cout<<"UPDATED BALANCE: "<<balance<<endl;
+    void display()
+    {
+        cout<<"\nEmployee ID:      "<<empID;
+        cout<<"\nEmployee Name:    "<<name;
+        cout<<"\nBasic Salary:     "<<basicSalary;
+        cout<<"\nHRA:              "<<hra;
+        cout<<"\nDA:               "<<da;
+        cout<<"\nBonus:            "<<bonus;
+        cout<<"\nDeduction:        "<<deduction;
+        cout<<"\nGross Salary:     "<<calculateGrossSalary();
+        cout<<"\nNet Salary:       "<<calculateNetSalary()<<endl;
     }
-
-void withdraw(){
-        double amount;
-        cout<<"ENTER AMOUNT U WANT TO WITHDRAW: ";
-        cin>>amount;
-        if(amount>balance){
-            cout<<"INSUFFICIENT BALANCE--CAN'T WITHDRAW AMOUND GREATER THAN ACCOUNT BALANCE\n";
-            return;
-        }
-        balance -= amount;
-        cout<<"MONEY WITHDRAWN SUCCESSFULLY\n";
-        cout<<"BALANCE: "<<balance;
+    void increaseSalary(int sal){
+        basicSalary+=sal;
+        cout<<"BASIC SALARY AFTER INCREMENET: "<<basicSalary<<endl;
     }
-void checkBalance(){
-        cout<<"CURRENT BALANCE: "<<balance<<endl;
+    void generateSalarySlip(){
+        cout<<"SALARY BREAKOUT IS AS FOLLOWS: "<<endl;
+        cout<<"\nBasic Salary:     "<<basicSalary;
+        cout<<"\nHRA:              "<<hra;
+        cout<<"\nDA:               "<<da;
+        cout<<"\nBonus:            "<<bonus;
+        cout<<"\nDeduction:        "<<deduction;
+        cout<<"\nGross Salary:     "<<calculateGrossSalary();
+        cout<<"\nNet Salary:       "<<calculateNetSalary()<<endl;
     }
- void updateDetails(){
-        cout<<"ENTER NEW NAME: ";
-        getline(cin>>ws,name);
-        cout<<"ENTER NEW PHONE NUMBER: ";
-        cin>>phone;
-        cout<<"YOUR DETAILS ARE UPDATED\n";
-    }
-
 };
-int main(){
-  int n;
-cout<<"ENTER NUMBER OF ACCOUNTS U WANT TO perform opeartions for: ";
-cin>>n;
-vector<Account>accounts(n);
-for(int i=0;i<n;i++){
-        cout<<"\nCREATE ACCOUNT "<<i+1<<endl;
-        accounts[i].createAccount();
+
+int main()
+{    int n;
+    cout<<"ENTER THE NUMBER OF EMPLOYESS FOR WHOM U WANT TO MANAGE THE SALARY: ";
+    cin>>n;
+    vector<Employee>emp(n);
+    for (int i = 0; i < n; i++){ 
+        cout<<"ENTER THE DETAILS OF EMPLOYEE: "<<i+1<<" : "<<endl;
+         emp[i].input();
     }
- int choice;
-do{     cout<<"\n1. Display All Accounts";
-        cout<<"\n2. Search Account";
-        cout<<"\n3. Deposit Money";
-        cout<<"\n4. Withdraw Money";
-        cout<<"\n5. Check Balance";
-        cout<<"\n6. Update Details";
-        cout<<"\n7.Delete your Account";
-        cout<<"\n8. Exit";
-        cout<<"\nENTER CHOICE: ";
+    for (int i=0;i<n;i++)
+    {cout<<"SALARY DETAILS OF EMPLOYEE: "<<i+1<<" : "<<endl;
+       emp[i].display();
+    }
+    
+    int choice;
+    do
+    {  
+        cout<<"\nSalary Management System";
+        cout<<"\n1. GENERATE SALARY SLIP";
+        cout<<"\n2. Sort employees by Salary";
+        cout<<"\n3.Increase Salary";
+        cout<<"\n4. Exit";
+        cout<<"\nEnter your choice: ";
         cin>>choice;
- if(choice==1){
-  for(auto &acc:accounts){
-                acc.displayAccount();
-            }
+if(choice==1){
+    int id;
+    cout<<"ENTER THE ID FOR WHOME U WANT TO SEE THE SALARY SLIP: ";
+    cin>>id;
+    bool f=false;
+    for(auto &it:emp){
+        if(it.getId()==id){
+          f=true;
+          it.generateSalarySlip();
+          break;
         }
- else if(choice==2){
-     long long search;
-            cout<<"ENTER ACCOUNT NUMBER: ";
-            cin>>search;
-            bool found=false;
-            for(auto &acc:accounts){
-                if(acc.getAccountNo()==search){
-                    acc.displayAccount();
-                    found=true;
-                    break;
-                }
-
-            }
-
-            if(!found)
-                cout<<"ACCOUNT NOT FOUND\n";
-
-        }
+    }
+    if(!f){
+        cout<<"INVALID ID";
+    }
+}
+else if(choice==2){
+   sort(emp.begin(),emp.end(),[](Employee &a,Employee &b){
+    return a.calculateNetSalary()>b.calculateNetSalary(); 
+   });
+   cout<<" AFTER SORTING BY SALARY\n";
+   for(auto &it:emp){
+    it.display();
+   }
+}
 else if(choice==3){
-long long accNo;
-    cout<<"ENTER ACCOUNT NUMBER: ";
-            cin>>accNo;
-               for(auto &acc:accounts){
-
-                if(acc.getAccountNo()==accNo){
-                    acc.deposit();
-                }
-
-            }
-
+    int id;
+    cout<<"enter the id of the employee: ";
+    cin>>id;
+    for(auto &it:emp){
+        if(it.getId()==id){
+            int amount;
+               cout<<"ENTER THE AMOUNT YOU WANT TO INCREASE IN SALARY: ";
+               cin>>amount;
+               it.increaseSalary(amount);
+               cout<<"SALARY INCREASED"<<endl;
         }
-        else if(choice==4){
+    }
+}
 
-            long long accNo;
-            cout<<"ENTER ACCOUNT NUMBER: ";
-            cin>>accNo;
+            
+    }while(choice!=4);
 
-            for(auto &acc:accounts){
-
-                if(acc.getAccountNo()==accNo){
-                    acc.withdraw();
-                }
-
-            }
-
-        }
-
-
-        else if(choice==5){
-
-            long long accNo;
-            cout<<"ENTER ACCOUNT NUMBER: ";
-            cin>>accNo;
-
-            for(auto &acc:accounts){
-
-                if(acc.getAccountNo()==accNo){
-                    acc.checkBalance();
-                }
-
-            }
-
-        }
-
-
-        else if(choice==6){
-
-            long long accNo;
-            cout<<"ENTER ACCOUNT NUMBER: ";
-            cin>>accNo;
-
-            for(auto &acc:accounts){
-
-                if(acc.getAccountNo()==accNo){
-                    acc.updateDetails();
-                }
-
-            }
-
-        }
-       else if(choice==7){
-        long long accNo;
-        cout<<"ENTER ACCOUNT NUMBER: ";
-        cin>>accNo;
-        bool flag=false;
-        for(auto it=accounts.begin();it!=accounts.end();it++){if(it->getAccountNo()==accNo){
-            accounts.erase(it);
-            cout<<"ACCOUND DELETED SUCCESSFULLY"<<endl;
-            flag=true;
-            break;
-        }
-
-        }
-        if(!flag){
-            cout<<"INVALID ACCOUNT NUMBER";
-        }
-       }
-
-    }while(choice!=8);
-   cout<<"THANK YOU FOR USING THIS BANK MANAGEMENT SYSTEM"<<endl;
-
-    return 0;
+    cout<<"THANKS FOR USING OUR SALARY MANAGEMENT SYSTEM";
 }

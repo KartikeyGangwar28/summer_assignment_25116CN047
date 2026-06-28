@@ -2,35 +2,6 @@
 #include <string>
 #include <vector>
 using namespace std;
-// class Library{
-//     public:
-// int totalBooks;
-//  vector<pair<string,string>>books;
-// public:
-// void takeInfo(){
-//     cout<<"ENTER THE TOTAL NUMBER OF BOOKS IN LIBRARY: ";
-//     cin>>totalBooks;
-//    for(int i=0;i<totalBooks;i++){
-//         string name;
-//         string author;
-//         cout<<"ENTER THE NAME OF BOOK "<<i+1<<" : ";
-//         getline(cin>>ws,name);
-//         cout<<"ENTER THE AUTHOR'S Name: ";
-//         getline(cin>>ws,author);
-//         books.push_back({name,author});
-//          }
-// }
-// void displayBooks(){
-//     cout<<"*******************WELCOME TO XYZ LIBRARY*******************\n";
-//     cout<<"TOTAL BOOKS IN LIBRARY:        "<<totalBooks<<endl;
-//     cout<<"BOOK NAME\t\t\t\t\t AUTHOR'S NAME"<<endl;
-//     for(auto &it:books){
-//         cout<<it.first<<"\t\t\t\t\t "<<it.second;
-//         cout<<endl;
-//     }
-// }
-
-// };
 class Library{
     private:
    string author;

@@ -42,9 +42,6 @@ grade='D';
 else
 grade='F';
 }
-
-
-
 void display(){
 cout<<"\n******** STUDENT DETAILS ********";
 cout<<"\nROLL NUMBER: "<<roll;
